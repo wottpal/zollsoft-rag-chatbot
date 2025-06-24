@@ -7,10 +7,10 @@ import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { Bot, User, Loader2, Sparkles, Zap, ArrowUp } from "lucide-react"
+import { Bot, User, Loader2, Sparkles, Zap, ArrowUp, Trash2 } from "lucide-react"
 
 export default function ZollsoftChatbot() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useCustomChat()
+  const { messages, input, handleInputChange, handleSubmit, isLoading, clearChat } = useCustomChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const [isTyping, setIsTyping] = useState(false)
   const [inputFocused, setInputFocused] = useState(false)
@@ -198,7 +198,18 @@ export default function ZollsoftChatbot() {
                   </div>
                 </Button>
               </form>
-              <div className="flex items-center justify-center mt-4 gap-2">
+              <div className="flex items-center justify-center mt-4 gap-4">
+                <Button
+                  type="button"
+                  onClick={clearChat}
+                  disabled={isLoading}
+                  className="bg-white/5 hover:bg-white/10 border border-white/20 hover:border-red-400/50 text-white/70 hover:text-red-400 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg"
+                >
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  Reset Chat
+                </Button>
+              </div>
+              <div className="flex items-center justify-center mt-2 gap-2">
                 <div className="w-1 h-1 bg-white/30 rounded-full"></div>
                 <p className="text-xs text-white/50 font-medium">Powered by Zollsoft AI • Secure & Private</p>
                 <div className="w-1 h-1 bg-white/30 rounded-full"></div>
